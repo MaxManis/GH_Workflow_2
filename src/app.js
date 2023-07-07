@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
 
@@ -10,4 +10,4 @@ app.get('/test', (_req, res) => {
   res.send({ hello_to_github: 201 });
 });
 
-app.listen(3000)
+app.listen(3000);
