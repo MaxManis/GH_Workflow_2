@@ -1,6 +1,7 @@
 {
+    "root": true,
     "env": {
-        "browser": true,
+        "node": true,
         "commonjs": true,
         "es2021": true
     },
@@ -10,6 +11,6 @@
     },
     "rules": {
       "semi": ["error", "always"],
-      "quotes": ["error", "double"]
+      "quotes": ["error", "single"]
     }
 }

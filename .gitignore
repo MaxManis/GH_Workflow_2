@@ -2,3 +2,6 @@ node_modules
 .code
 .idea
 .DS_store
+
+*.csv
+*.sw[op]
