@@ -14,10 +14,10 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '18.12.1'
+          node-version: "18.12.1"
 
       - name: Install dependencies
-        run: npm ci 
+        run: npm ci
 
       - uses: jitterbit/get-changed-files@v1
         id: changed-files
@@ -26,4 +26,17 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run ESlint
         run: |
-          npx eslint "${{ steps.changed-files.outputs.all }}"
+          targetFiles=()
+
+          for file in ${{ steps.files.outputs.added_modified }}; do
+            if [ "${file#*.}" == "js" ]; then
+              targetFiles+=( $file )
+            else
+              echo "$file file doesnt match the patter"
+            fi
+          done
+
+          stringFiles="${targetFiles[*]}"
+          echo "${stringFiles}"
+
+          npx eslint "$stringFiles"
