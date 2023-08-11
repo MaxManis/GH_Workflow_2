@@ -27,8 +27,10 @@ jobs:
       - name: Run ESlint
         run: |
           targetFiles=()
+          allFilesString="${{ steps.files.outputs.added_modified }}"
+          allFiles=($allFilesString)
 
-          for file in "${{ steps.files.outputs.added_modified }}"; do
+          for file in ${allFiles[*]}; do
             if [ "${file#*.}" == "js" ]; then
               targetFiles+=( $file )
             else
