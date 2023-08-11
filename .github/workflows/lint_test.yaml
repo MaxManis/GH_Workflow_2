@@ -28,7 +28,7 @@ jobs:
         run: |
           targetFiles=()
 
-          for file in ${{ steps.files.outputs.added_modified }}; do
+          for file in "${{ steps.files.outputs.added_modified }}"; do
             if [ "${file#*.}" == "js" ]; then
               targetFiles+=( $file )
             else
@@ -39,4 +39,4 @@ jobs:
           stringFiles="${targetFiles[*]}"
           echo "${stringFiles}"
 
-          npx eslint "$stringFiles"
+          npx eslint $stringFiles
